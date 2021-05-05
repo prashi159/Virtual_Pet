@@ -91,13 +91,13 @@ function draw() {
  }
 }
 function setToHour(){
-  pasttime = "Undifined"
+  pasttime = "Undefined"
   if(Feedtime){
     if(Feedtime >=12)
-    pasttime = Feedtime- 12 +"PM"
+    pasttime = Feedtime- 12 +" PM"
    }
    else {
-     pasttime = Feedtime +"AM"
+     pasttime = Feedtime +" AM"
    }
 }
 
