@@ -1,5 +1,5 @@
 var database ;
-var foodS=20,foodStock;
+var foodS=0,foodStock;
 var dog,dog1,dog2
 var position
 //var form
@@ -21,7 +21,8 @@ function setup() {
   createCanvas(1000, 500);
   database = firebase.database();
   console.log(database);
-  foodObject=new Food();
+  foodObject = new Food();
+
   dog = createSprite(550,250,10,10);
   dog.addImage(happyDog)
   dog.scale=0.2
@@ -34,9 +35,11 @@ function setup() {
 
   var dogo = database.ref('Food');
   dogo.on("value", readPosition, showError);
-  feed = createButton("FEED "+name)
+
+  feed = createButton("FEED DOGO")
   feed.position(700,115)
   feed.mousePressed(FeedDog)
+
   add = createButton("ADD FOOD")
   add.position(600,115)
   add.mousePressed(AddFood)
@@ -125,9 +128,9 @@ function FeedDog(){
     pt = frameCount;
 
     dog.addImage(dogImg) 
-  foodobject.updateFoodStock(foodobject.getFoodStock()-1)
+  foodObject.updateFoodStock(foodObject.getFoodStock()-1)
    database.ref('/').update({
-     Food:foodobject.getFoodStock(),
+     Food:foodObject.getFoodStock(),
      FeedTime:hour()
    })
   }
