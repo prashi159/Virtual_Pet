@@ -5,7 +5,7 @@ var position
 //var form
 var feed,add,last 
 var foodObject
-var Feedtime
+var FeedTime
 var Lastfeed
 var name = "Dog"
 var happyDog ,dogImg ,milkImage
@@ -47,7 +47,7 @@ function setup() {
    
 }
 function readTime(time){
-  Feedtime = time.val()
+  FeedTime = time.val()
 }
 function readStock(data){
  foodS = data.val();
@@ -80,9 +80,9 @@ function draw() {
   fill(255,255,254);
   textSize(15);
   //console.log(Feedtime)
+  setToHour();
   text("Last Feed: "+pasttime, 600, 115)
  drawSprites();
- setToHour()
  if(pt<frameCount-delay){
   dog.addImage(happyDog) 
  }
@@ -91,15 +91,17 @@ function draw() {
  }
 }
 function setToHour(){
-  pasttime = "Undefined"
-  if(Feedtime){
-    if(Feedtime >=12)
-    pasttime = Feedtime- 12 +" PM"
+  //pasttime = "Undefined"
+  if(FeedTime >=12){
+    pasttime = FeedTime%12 +" PM"
    }
-   else {
-     pasttime = Feedtime +" AM"
+   else if(FeedTime == 0) {
+     pasttime = "12 AM";
    }
-}
+   else{
+     pasttime = FeedTime + " AM"
+   }
+  }
 
 function readPosition(data){
   position = data.val();
@@ -140,6 +142,4 @@ function FeedDog(){
     database.ref('/').update({
       Food:position})
     }
-    
-
     
